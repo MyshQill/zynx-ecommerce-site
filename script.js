@@ -78,7 +78,7 @@ function displayProducts(filteredProducts = products) {
                 <p>${product.description}</p>
                 <div class="price">$${product.price}</div>
                 <button class="btn" onclick="addToCart(${product.id})">Add to Cart</button>
-                <a href="product-detail.html?id=${product.id}" class="btn btn-secondary">View Details</a>
+                <a href="pages/product-detail.html?id=${product.id}" class="btn btn-secondary">View Details</a>
             </div>
         </div>
     `).join('');
@@ -208,7 +208,7 @@ function handleSearch() {
     }
 
     resultsBox.innerHTML = filtered.map(p => `
-        <div class="result-item" onclick="window.location.href='product-detail.html?id=${p.id}'">
+        <div class="result-item" onclick="window.location.href='pages/product-detail.html?id=${p.id}'">
             <img src="${p.image}" alt="${p.name}">
             <div>
                 <h6 class="m-0">${p.name}</h6>
