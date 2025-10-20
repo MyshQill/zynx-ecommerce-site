@@ -1,0 +1,22 @@
+# Zynx Website Development TODO
+
+- [x] Create TODO.md
+- [x] Create index.html: Main page with Bootstrap layout, product grid, navigation.
+- [x] Create product-detail.html: Page for viewing product details.
+- [x] Create cart.html: Page for viewing cart items.
+- [x] Create script.js: JavaScript for cart functionality (add to cart, view cart, localStorage).
+- [x] Test the website using browser_action to ensure interactivity. (Browser tool disabled, manual testing recommended)
+- [x] Enhance website beauty: Add custom CSS with modern design, gradients, shadows, hover effects, better images, footer, hero section, improved notifications.
+- [x] Add fade-in animations to product cards on load.
+- [x] Add a search bar in the navbar for filtering products.
+- [x] Add a dark mode toggle in the navbar across all pages.
+- [x] Improve hero section with a CTA button.
+- [x] Update colors and add subtle animations for a fresher modern look.
+- [x] Enhance mobile-first responsive design.
+- [x] Update script.js for search functionality, dark mode toggle logic, and apply fade-in animations.
+- [x] Test the updated modern design features. (Browser tool disabled, manual testing recommended)
+- [x] Rename website to Zynx and update all products to earphones and headsets.
+- [x] Implement Dribbble-inspired design: light background, green CTAs, Poppins font, rounded container, asymmetric hero, cards grid with metrics and popular colors.
+- [x] Add products section with browse, view details, and add to cart functionality using Bootstrap for responsive design.
+- [x] Remove "More Products", "5m+", "Listening Has Been Released", and "Popular Colors" cards from the design.
+- [x] Add 10 more products to the catalog in script.js.
