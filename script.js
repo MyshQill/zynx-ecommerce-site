@@ -187,13 +187,46 @@ function loadDarkMode() {
 // Search functionality
 function handleSearch() {
     const searchInput = document.getElementById('search-input');
-    if (!searchInput) return;
-    const query = searchInput.value.toLowerCase();
+    const resultsBox = document.getElementById('search-results');
+    if (!searchInput || !resultsBox) return;
+
+    const query = searchInput.value.toLowerCase().trim();
+    if (query === '') {
+        resultsBox.style.display = 'none';
+        return;
+    }
+
     const filtered = products.filter(p =>
         p.name.toLowerCase().includes(query) ||
         p.description.toLowerCase().includes(query)
     );
-    displayProducts(filtered);
+
+    if (filtered.length === 0) {
+        resultsBox.innerHTML = '<p class="p-3 text-muted">No products found.</p>';
+        resultsBox.style.display = 'block';
+        return;
+    }
+
+    resultsBox.innerHTML = filtered.map(p => `
+        <div class="result-item" onclick="window.location.href='product-detail.html?id=${p.id}'">
+            <img src="${p.image}" alt="${p.name}">
+            <div>
+                <h6 class="m-0">${p.name}</h6>
+                <small class="text-muted">$${p.price}</small>
+            </div>
+        </div>
+    `).join('');
+    resultsBox.style.display = 'block';
+}
+
+function clearSearch() {
+    const searchInput = document.getElementById('search-input');
+    const resultsBox = document.getElementById('search-results');
+    if (searchInput) {
+        searchInput.value = '';
+        if (resultsBox) resultsBox.style.display = 'none';
+        displayProducts();
+    }
 }
 
 // Initialize
@@ -212,5 +245,25 @@ document.addEventListener('DOMContentLoaded', () => {
     if (darkModeToggle) darkModeToggle.addEventListener('click', toggleDarkMode);
 
     const searchInput = document.getElementById('search-input');
-    if (searchInput) searchInput.addEventListener('input', handleSearch);
+    if (searchInput) {
+        searchInput.addEventListener('input', handleSearch);
+        searchInput.addEventListener('input', function() {
+            const clearBtn = document.getElementById('clear-search');
+            if (clearBtn) {
+                clearBtn.style.display = this.value ? 'flex' : 'none';
+            }
+        });
+    }
+
+    const clearSearchBtn = document.getElementById('clear-search');
+    if (clearSearchBtn) clearSearchBtn.addEventListener('click', clearSearch);
+
+    // Hide search results when clicking outside
+    document.addEventListener('click', (e) => {
+        const searchBox = document.getElementById('search-results');
+        const searchInput = document.getElementById('search-input');
+        if (searchBox && !searchBox.contains(e.target) && e.target !== searchInput) {
+            searchBox.style.display = 'none';
+        }
+    });
 });
